@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap"
 import { RandomRecipes } from "./components/Random"
+import { SearchRecipes } from "./components/Search"
 import styles from './assets/styles/main.module.css'
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
         <Row>
           <Col md={2} style={{height: '100vh'}} className={`${styles['aside-column']} justify-content-center bg-success`}>
               {/* Aside column */}
-                Aside
+              <SearchRecipes />
           </Col>
 
           {/* Main Content */}
@@ -17,8 +18,7 @@ function App() {
           <RandomRecipes />
           </Col>
         </Row>
-        </Container>
-        
+        </Container> 
     </>
   )
 }
