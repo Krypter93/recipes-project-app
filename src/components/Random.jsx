@@ -1,22 +1,16 @@
 import {Row, Col, Card} from 'react-bootstrap';
-import { useState } from 'react';
-import { fetchRandomRecipes } from '../service/fetchRandom';
+import {fetchRandomRecipes} from '../service/redux/randomRecipesSlice';
 import { useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 export const RandomRecipes = () => {
-    const [randomRecipes, setRandomRecipes] = useState([])
-    
+    const dispatch = useDispatch()
+    const state = useSelector(state => state.randomRecipes.random)
+
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetchRandomRecipes();
-            setRandomRecipes(Object.values(response))
-        }
-        fetchData()
+        dispatch(fetchRandomRecipes())
     }, [])
 
-    console.log(randomRecipes);
-    
-    
     return (
         <>
             <Row>
@@ -27,7 +21,7 @@ export const RandomRecipes = () => {
 
             {/* Card */}
             <Row  className="mt-2 justify-content-center">
-                {randomRecipes.map((recipe, index) => (
+                {state.map((recipe, index) => (
                     <Col xs={12} md={3} className='mt-3' key={recipe.id + index}>
                         <Card style={{width: '18rem'}}>
                             <Card.Body>
