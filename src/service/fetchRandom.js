@@ -1,4 +1,4 @@
-import { API } from "../service/api/api_credentials"
+/* import { API } from "../service/api/api_credentials"
 
 export const fetchRandomRecipes = async () => {
     try {
@@ -9,4 +9,5 @@ export const fetchRandomRecipes = async () => {
     } catch (error) {
         console.log('Error: ', error);
     }
-}
+} */
+

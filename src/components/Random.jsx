@@ -1,22 +1,12 @@
-import {Row, Col, Card} from 'react-bootstrap';
-import { useState } from 'react';
-import { fetchRandomRecipes } from '../service/fetchRandom';
-import { useEffect } from 'react';
-
-export const RandomRecipes = () => {
-    const [randomRecipes, setRandomRecipes] = useState([])
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetchRandomRecipes();
-            setRandomRecipes(Object.values(response))
-        }
-        fetchData()
-    }, [])
-
-    console.log(randomRecipes);
-    
-    
+ import {Row, Col, Card} from 'react-bootstrap';
+ import PropTypes from 'prop-types';
+ import styles from '../assets/styles/main.module.css';
+ import { Error } from './Error';
+ 
+ 
+export const RandomRecipes = ({recipes}) => {
+    console.log(recipes);
+   
     return (
         <>
             <Row>
@@ -27,9 +17,9 @@ export const RandomRecipes = () => {
 
             {/* Card */}
             <Row  className="mt-2 justify-content-center">
-                {randomRecipes.map((recipe, index) => (
+                {recipes && recipes.map((recipe, index) => (
                     <Col xs={12} md={3} className='mt-3' key={recipe.id + index}>
-                        <Card style={{width: '18rem'}}>
+                        <Card  className={styles['cards']}>
                             <Card.Body>
                                 <Card.Img variant="top" src={`${recipe.image}`}/>
                                 <Card.Title>{`${recipe.title}`}</Card.Title>
@@ -37,8 +27,19 @@ export const RandomRecipes = () => {
                             </Card.Body>
                         </Card>
                     </Col>  
-            ))} 
+            ))}
                 </Row>
+
+                {!recipes && 
+                <Col className="d-flex justify-content-center align-items-center">
+                    <Error />
+                </Col>
+                
+            } 
         </>
     )
+}
+
+RandomRecipes.propTypes = {
+    recipes: PropTypes.array
 }
