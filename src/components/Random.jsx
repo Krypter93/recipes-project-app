@@ -1,16 +1,12 @@
-import {Row, Col, Card} from 'react-bootstrap';
-import {fetchRandomRecipes} from '../service/redux/randomRecipesSlice';
-import { useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-
-export const RandomRecipes = () => {
-    const dispatch = useDispatch()
-    const state = useSelector(state => state.randomRecipes.random)
-
-    useEffect(() => {
-        dispatch(fetchRandomRecipes())
-    }, [])
-
+ import {Row, Col, Card} from 'react-bootstrap';
+ import PropTypes from 'prop-types';
+ import styles from '../assets/styles/main.module.css';
+ import { Error } from './Error';
+ 
+ 
+export const RandomRecipes = ({recipes}) => {
+    console.log(recipes);
+   
     return (
         <>
             <Row>
@@ -21,9 +17,9 @@ export const RandomRecipes = () => {
 
             {/* Card */}
             <Row  className="mt-2 justify-content-center">
-                {state.map((recipe, index) => (
+                {recipes && recipes.map((recipe, index) => (
                     <Col xs={12} md={3} className='mt-3' key={recipe.id + index}>
-                        <Card style={{width: '18rem'}}>
+                        <Card  className={styles['cards']}>
                             <Card.Body>
                                 <Card.Img variant="top" src={`${recipe.image}`}/>
                                 <Card.Title>{`${recipe.title}`}</Card.Title>
@@ -31,8 +27,19 @@ export const RandomRecipes = () => {
                             </Card.Body>
                         </Card>
                     </Col>  
-            ))} 
+            ))}
                 </Row>
+
+                {!recipes && 
+                <Col className="d-flex justify-content-center align-items-center">
+                    <Error />
+                </Col>
+                
+            } 
         </>
     )
+}
+
+RandomRecipes.propTypes = {
+    recipes: PropTypes.array
 }

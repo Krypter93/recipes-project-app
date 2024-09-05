@@ -17,7 +17,9 @@ export const fetchRandomRecipes = createAsyncThunk(
 )
 
 const initialState = {
-    random: []
+    status: '',
+    random: [],
+    error: null
 }
 
 const randomRecipesSlice = createSlice({
@@ -26,8 +28,18 @@ const randomRecipesSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(fetchRandomRecipes.pending, (state) => {
+                state.status = 'loading'
+            })
             .addCase(fetchRandomRecipes.fulfilled, (state, action) => {
+                state.status = 'succeeded'
                 state.random = action.payload
+            })
+            .addCase(fetchRandomRecipes.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.error.message
+                console.log(state.error);
+                
             })
     }
 })

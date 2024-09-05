@@ -1,21 +1,21 @@
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col} from "react-bootstrap"
 import { RandomRecipes } from "./components/Random"
 import { SearchRecipes } from "./components/Search"
+import { Loading } from "./components/Loading"
+import { Error } from "./components/Error"
 import styles from './assets/styles/main.module.css'
-/* import { fetchRandomRecipes } from "./service/fetchRandom"
-import { useEffect } from "react" */
+import { useSelector, useDispatch } from "react-redux"
+import {fetchRandomRecipes} from './service/redux/randomRecipesSlice'
+import { useEffect } from 'react';
 
 function App() {
+  const state = useSelector(state => state.randomRecipes.status)
+  const data = useSelector(state => state.randomRecipes.random)
+  const dispatch = useDispatch()
 
-  /* useEffect(() => {
-    const fetchData = async () => {
-        const response = await fetchRandomRecipes();
-        console.log(response);
-        
-    }
-    fetchData()
-}, []) */
-
+  useEffect(() => {
+    dispatch(fetchRandomRecipes())
+}, [])
 
   return (
     <>
@@ -27,9 +27,20 @@ function App() {
           </Col>
 
           {/* Main Content */}
+          {state === 'loading' && 
+          <Col className="d-flex justify-content-center align-items-center">
+            <Loading />
+          </Col>}  
+          
+          {state === 'succeeded' && 
           <Col>
-          <RandomRecipes />
-          </Col>
+            <RandomRecipes recipes={data} />
+          </Col>}
+
+          {/* {state === 'failed' &&
+          <Col>
+            <Error />
+          </Col>} */}
         </Row>
         </Container> 
     </>
