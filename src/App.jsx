@@ -2,20 +2,29 @@ import { Container, Row, Col} from "react-bootstrap"
 import { RandomRecipes } from "./components/Random"
 import { SearchRecipes } from "./components/Search"
 import { Loading } from "./components/Loading"
-import { Error } from "./components/Error"
 import styles from './assets/styles/main.module.css'
 import { useSelector, useDispatch } from "react-redux"
 import {fetchRandomRecipes} from './service/redux/randomRecipesSlice'
 import { useEffect } from 'react';
+/* import { useNavigate } from "react-router-dom" */
 
 function App() {
   const state = useSelector(state => state.randomRecipes.status)
   const data = useSelector(state => state.randomRecipes.random)
+ /*  const searchState = useSelector(state => state.recipeSeeker.status)
+  const inputState = useSelector(state => state.inputSearch.value) */
   const dispatch = useDispatch()
+  /* const navigate = useNavigate() */
 
   useEffect(() => {
     dispatch(fetchRandomRecipes())
 }, [])
+
+/* useEffect(() => {
+  if (inputState !== null && searchState === 'succeeded') {
+    navigate('/query')
+  }
+}, [inputState, searchState, navigate]) */
 
   return (
     <>
@@ -36,11 +45,6 @@ function App() {
           <Col>
             <RandomRecipes recipes={data} />
           </Col>}
-
-          {/* {state === 'failed' &&
-          <Col>
-            <Error />
-          </Col>} */}
         </Row>
         </Container> 
     </>

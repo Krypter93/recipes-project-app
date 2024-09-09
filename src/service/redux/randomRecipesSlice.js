@@ -39,7 +39,6 @@ const randomRecipesSlice = createSlice({
                 state.status = 'failed'
                 state.error = action.error.message
                 console.log(state.error);
-                
             })
     }
 })
