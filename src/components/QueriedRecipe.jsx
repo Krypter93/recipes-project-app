@@ -1,23 +1,34 @@
 import { Error } from "./Error"
-import { Row, Col, Card, Container } from "react-bootstrap"
+import { Row, Col, Card, /* Container */ } from "react-bootstrap"
 import PropTypes from 'prop-types'
 import styles from '../assets/styles/main.module.css'
-import { SearchRecipes } from "./Search"
-import { useLocation } from "react-router-dom"
+/* import { SearchRecipes } from "./Search" */
+import { useLocation, useNavigate } from "react-router-dom"
+import { RiArrowGoBackLine } from "react-icons/ri";
+import { clearInputValue } from "../service/redux/inputSearchSlice"
+import { useDispatch } from "react-redux"
+
 
 export const QueriedRecipe = () => {
     const location = useLocation()
     const query = location.state.data
-    console.log(typeof query);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const handleBackHome = () => {
+        navigate('/')
+        dispatch(clearInputValue())
+    }
     
 
     return (
         <>
-        <Container fluid style={{backgroundColor: '#F5F5F5', height: '100vh'}} className="Prueba">
-            <Col md={2} style={{height: '100vh'}} className={`${styles['aside-column']} justify-content-center bg-success`}>
+        {/* <Container fluid style={{backgroundColor: '#F5F5F5', height: '100vh', zIndex: '1'}} className="Prueba"> */}
+            {/* <Row> */}
+            {/* <Col md={2} style={{height: '100vh'}} className={`${styles['aside-column']} justify-content-center bg-success`}> */}
                 {/* Aside column */}
-                <SearchRecipes />
-            </Col>
+            {/*     <SearchRecipes />
+            </Col> */}
         {query && 
             <Row>
                 
@@ -28,7 +39,7 @@ export const QueriedRecipe = () => {
 
             {/* Card */}
             {Array.isArray(query) && query.length > 0 ? (
-                <Row className="mt-2 justify-content-center"> 
+                <Row className="mt-2 justify-content-center p-5"> 
                     {query.map((elem) => (
                 <Col xs={12} md={3} className='mt-3' key={elem.id}>
                     <Card className={styles['cards']}>
@@ -45,7 +56,12 @@ export const QueriedRecipe = () => {
                     <Error />
                 </Col>
             )} 
-        </Container>
+            
+            <RiArrowGoBackLine style={{fontSize: '1.5em', cursor: 'pointer', marginLeft: '95%', marginBottom: '1em'}} onClick={handleBackHome}/>
+            
+            {/* </Row> */}
+            
+        {/* </Container> */}
         </>
     )
 }

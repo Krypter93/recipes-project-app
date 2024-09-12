@@ -10,9 +10,12 @@ const inputSearchSlice = createSlice({
     reducers: {
         setInputValue: (state, action) => {
             state.value = action.payload
+        },
+        clearInputValue: state => {
+            state.value = ''
         }
     }
 })
 
-export const {setInputValue} = inputSearchSlice.actions
+export const {setInputValue, clearInputValue} = inputSearchSlice.actions
 export default inputSearchSlice.reducer

@@ -6,6 +6,7 @@ import styles from './assets/styles/main.module.css'
 import { useSelector, useDispatch } from "react-redux"
 import {fetchRandomRecipes} from './service/redux/randomRecipesSlice'
 import { useEffect } from 'react';
+import { QueriedRecipe } from "./components/QueriedRecipe"
 /* import { useNavigate } from "react-router-dom" */
 
 function App() {
@@ -20,11 +21,6 @@ function App() {
     dispatch(fetchRandomRecipes())
 }, [])
 
-/* useEffect(() => {
-  if (inputState !== null && searchState === 'succeeded') {
-    navigate('/query')
-  }
-}, [inputState, searchState, navigate]) */
 
   return (
     <>
@@ -44,7 +40,7 @@ function App() {
           {state === 'succeeded' && 
           <Col>
             <RandomRecipes recipes={data} />
-          </Col>}
+          </Col> }
         </Row>
         </Container> 
     </>
