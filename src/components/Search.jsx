@@ -1,11 +1,40 @@
 import { Row, Col } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import { setInputValue } from "../service/redux/inputSearchSlice"
+import { fetchRecipe } from "../service/redux/recipeSeekerSlice"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { clearRandomRecipes } from "../service/redux/randomRecipesSlice"
 
 export const SearchRecipes = () => {
+    const inputState = useSelector(state => state.inputSearch.value)
+    /* const recipeState = useSelector(state => state.recipeSeeker.status) */
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleInputChange = (e) => {
+        dispatch(setInputValue(e.target.value))
+    }
+
+    useEffect(() => {
+        const delay = setTimeout(() => {
+            if (inputState.trim()) {
+                dispatch(fetchRecipe(inputState))
+                    .unwrap()
+                    .then(data => navigate('/query', {state: {data}}))
+                    .catch(error => console.log(error))
+            }
+        }, 1000)
+        dispatch(clearRandomRecipes())
+        return () => clearTimeout(delay)
+        /* dispatch(fetchRecipe(inputState)) */
+    }, [inputState, dispatch, navigate])
+
     return (
         <>
         <Row className="justify-content-center">
         <h1 className="text-center mt-5 text-white">Search it here!</h1>
-        <input className="form-control mt-3" type="search" placeholder="Search Recipes" style={{width: '90%'}} />   
+        <input className="form-control mt-3" type="search" placeholder="Search Recipes" style={{width: '90%'}} value={inputState} onChange={handleInputChange} />   
         </Row>
 
         <Row>

@@ -5,15 +5,17 @@
  
  
 export const RandomRecipes = ({recipes}) => {
-    console.log(recipes);
    
     return (
         <>
+            {recipes && 
             <Row>
                 <Col>
                     <h1 className="text-center mt-2 text-success display-5">Popular Recipes</h1>
                 </Col>
             </Row> 
+            }
+            
 
             {/* Card */}
             <Row  className="mt-2 justify-content-center">
