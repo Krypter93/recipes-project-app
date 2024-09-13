@@ -2,9 +2,16 @@
  import PropTypes from 'prop-types';
  import styles from '../assets/styles/main.module.css';
  import { Error } from './Error';
+ import { useNavigate } from 'react-router-dom';
  
  
 export const RandomRecipes = ({recipes}) => {
+
+    const navigate = useNavigate()
+
+    const handleClickRecipe = (recipeId) => {
+        navigate('/recipe', {state: {id: recipeId}})
+    }
    
     return (
         <>
@@ -22,7 +29,7 @@ export const RandomRecipes = ({recipes}) => {
                 {recipes && recipes.map((recipe, index) => (
                     <Col xs={12} md={3} className='mt-3' key={recipe.id + index}>
                         <Card  className={styles['cards']}>
-                            <Card.Body>
+                            <Card.Body onClick={() => handleClickRecipe(recipe.id)}>
                                 <Card.Img variant="top" src={`${recipe.image}`}/>
                                 <Card.Title>{`${recipe.title}`}</Card.Title>
                                 <Card.Text>{`Ready in: ${recipe.readyInMinutes} minutes`}</Card.Text>
