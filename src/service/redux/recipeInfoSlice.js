@@ -8,7 +8,7 @@ export const fetchRecipeInfo = createAsyncThunk(
             const response = await fetch(`${API.URL}/${recipeId}/information?apiKey=${API.KEY}&includeNutrition=false`)
             const info = await response.json()
             console.log(info);
-            console.log(typeof info);
+            /* console.log(typeof info); */
             
             return info
         } catch (error) {

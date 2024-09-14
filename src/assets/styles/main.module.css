@@ -16,3 +16,24 @@ h1 {
     width: 17rem;
     cursor: pointer;
 }
+
+.text {
+    font-family: "Nerko One", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+}
+
+.instructions {
+    font-family: "Nerko One", cursive;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: justify;
+}
+
+.listElem {
+    font-family: "Nerko One", cursive;
+    font-weight: lighter;
+    font-size: 23px;
+    text-align: justify;
+}
