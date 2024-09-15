@@ -19,6 +19,10 @@ export const QueriedRecipe = () => {
         navigate('/')
         dispatch(clearInputValue())
     }
+
+    const handleClickRecipe = (recipeId) => {
+        navigate(`/recipe/${recipeId}`)
+    }
     
 
     return (
@@ -43,7 +47,7 @@ export const QueriedRecipe = () => {
                     {query.map((elem) => (
                 <Col xs={12} md={3} className='mt-3' key={elem.id}>
                     <Card className={styles['cards']}>
-                        <Card.Body>
+                        <Card.Body onClick={() => handleClickRecipe(elem.id)}>
                             <Card.Img variant="top" src={`${elem.image}`} />
                             <Card.Title>{`${elem.title}`}</Card.Title>
                         </Card.Body>
