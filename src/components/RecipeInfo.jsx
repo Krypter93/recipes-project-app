@@ -9,6 +9,7 @@ import styles from '../assets/styles/main.module.css'
 import { FaClock } from "react-icons/fa6";
 import ListGroup from 'react-bootstrap/ListGroup';
 import { RiArrowGoBackLine } from "react-icons/ri";
+import { clearInputValue } from "../service/redux/inputSearchSlice"
 
 
 export const RecipeInfo = () => {
@@ -26,6 +27,7 @@ export const RecipeInfo = () => {
 
     const handleBackHome = () => {
         navigate('/')
+        dispatch(clearInputValue())
     }
 
     
