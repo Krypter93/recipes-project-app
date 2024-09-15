@@ -10,7 +10,7 @@ export const RandomRecipes = ({recipes}) => {
     const navigate = useNavigate()
 
     const handleClickRecipe = (recipeId) => {
-        navigate('/recipe', {state: {id: recipeId}})
+        navigate(`/recipe/${recipeId}`)
     }
    
     return (

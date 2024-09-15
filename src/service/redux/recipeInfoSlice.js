@@ -26,7 +26,12 @@ const initialState = {
 const recipeInfoSlice = createSlice({
     name: 'recipeInfo',
     initialState,
-    reducers: {},
+    reducers: {
+        clearRecipeInfo: (state) => {
+            state.status = 'idle',
+            state.value = []
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchRecipeInfo.pending, (state) => {
@@ -42,4 +47,5 @@ const recipeInfoSlice = createSlice({
     }
 })
 
+export const { clearRecipeInfo } = recipeInfoSlice.actions
 export default recipeInfoSlice.reducer

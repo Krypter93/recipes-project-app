@@ -1,8 +1,8 @@
 import { Row, Col, Container } from "react-bootstrap"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { fetchRecipeInfo } from "../service/redux/recipeInfoSlice"
+import { fetchRecipeInfo, clearRecipeInfo } from "../service/redux/recipeInfoSlice"
 import { Loading } from "./Loading"
 import { Error } from "./Error"
 import styles from '../assets/styles/main.module.css'
@@ -12,27 +12,23 @@ import { RiArrowGoBackLine } from "react-icons/ri";
 
 
 export const RecipeInfo = () => {
-    
 
-    const location = useLocation()
     const dispatch = useDispatch()
     const recipeInfoStatus = useSelector(state => state.recipeInfo.status)
     const recipeInfoValue = useSelector(state => state.recipeInfo.value)
     const navigate = useNavigate()
+    const { recipeId } = useParams()
     
-    console.log(location.state.id);
-
     useEffect(() => {
-        dispatch(fetchRecipeInfo(location.state.id))
-    }, [])
+        dispatch(clearRecipeInfo())
+        dispatch(fetchRecipeInfo(recipeId))
+    }, [recipeId, dispatch])
 
     const handleBackHome = () => {
         navigate('/')
     }
 
     
-    
-
     return (
         <>
             <Row>
