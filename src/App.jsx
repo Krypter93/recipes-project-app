@@ -26,7 +26,7 @@ function App() {
     <>
       <Container fluid style={{backgroundColor: 'F5F5F5', height: '100vh'}}>
         <Row>
-          <Col md={2} style={{height: '100vh'}} className={`${styles['aside-column']} justify-content-center bg-success`}>
+          <Col md={2} xs={4} style={{height: '100vh'}} className={`${styles['aside-column']} justify-content-center bg-success`}>
               {/* Aside column */}
               <SearchRecipes />
           </Col>
