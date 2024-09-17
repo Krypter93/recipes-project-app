@@ -5,7 +5,7 @@ export const fetchRandomRecipes = createAsyncThunk(
     'randomRecipes/fetchRandom',
     async () => {
         try {
-            const response = await fetch(`${API.URL}/random?apiKey=${API.KEY}&number=${Math.floor(Math.random() * 20 + 1)}`)
+            const response = await fetch(`${API.URL}/random?apiKey=${API.KEY}&number=8`)
             if(!response.ok) throw new Error('Something went wrong!')
             const data = await response.json()
             return data.recipes
