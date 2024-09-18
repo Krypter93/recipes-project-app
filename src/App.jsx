@@ -6,19 +6,16 @@ import styles from './assets/styles/main.module.css'
 import { useSelector, useDispatch } from "react-redux"
 import {fetchRandomRecipes} from './service/redux/randomRecipesSlice'
 import { useEffect } from 'react';
-import { QueriedRecipe } from "./components/QueriedRecipe"
-/* import { useNavigate } from "react-router-dom" */
+import { clearRandomRecipes } from "./service/redux/randomRecipesSlice"
 
 function App() {
   const state = useSelector(state => state.randomRecipes.status)
   const data = useSelector(state => state.randomRecipes.random)
- /*  const searchState = useSelector(state => state.recipeSeeker.status)
-  const inputState = useSelector(state => state.inputSearch.value) */
   const dispatch = useDispatch()
-  /* const navigate = useNavigate() */
 
   useEffect(() => {
     dispatch(fetchRandomRecipes())
+    return () => dispatch(clearRandomRecipes())
 }, [])
 
 

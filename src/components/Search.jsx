@@ -8,7 +8,6 @@ import { clearRandomRecipes } from "../service/redux/randomRecipesSlice"
 
 export const SearchRecipes = () => {
     const inputState = useSelector(state => state.inputSearch.value)
-    /* const recipeState = useSelector(state => state.recipeSeeker.status) */
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -25,9 +24,11 @@ export const SearchRecipes = () => {
                     .catch(error => console.log(error))
             }
         }, 1000)
-        dispatch(clearRandomRecipes())
-        return () => clearTimeout(delay)
-        /* dispatch(fetchRecipe(inputState)) */
+        
+        return () => {
+            dispatch(clearRandomRecipes())
+            clearTimeout(delay)
+        }
     }, [inputState, dispatch, navigate])
 
     return (
