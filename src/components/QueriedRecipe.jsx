@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { clearInputValue } from "../service/redux/inputSearchSlice"
 import { useDispatch } from "react-redux"
+import { setMenuStatus } from "../service/redux/isMenuOpenSlice"
 
 
 export const QueriedRecipe = () => {
@@ -17,6 +18,7 @@ export const QueriedRecipe = () => {
     const handleBackHome = () => {
         navigate('/')
         dispatch(clearInputValue())
+        dispatch(setMenuStatus())
     }
 
     const handleClickRecipe = (recipeId) => {
@@ -54,7 +56,7 @@ export const QueriedRecipe = () => {
                     </Col>
                 )} 
                 
-                <RiArrowGoBackLine style={{fontSize: '1.5em', cursor: 'pointer', marginLeft: '95%', marginBottom: '1em'}} onClick={handleBackHome}/>
+                <RiArrowGoBackLine className={styles['back-arrow']} style={{fontSize: '1.5em', cursor: 'pointer', marginLeft: '95%', marginBottom: '1em'}} onClick={handleBackHome}/>
         </>
     )
 }
