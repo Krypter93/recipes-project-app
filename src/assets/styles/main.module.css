@@ -12,6 +12,13 @@ h1 {
     font-style: normal;
 }
 
+/* img {
+    width: '800px';
+    height:'500px';
+    background-size: 'cover';
+    border-radius: '10px';
+} */
+
 .cards:hover {
     width: 17rem;
     cursor: pointer;
@@ -36,4 +43,48 @@ h1 {
     font-weight: lighter;
     font-size: 23px;
     text-align: justify;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        overflow-x: hidden;
+    } 
+
+    .aside-column {
+        transform: translateX(-100%);
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .mobile-menu {
+        position: absolute;
+        top: 10px;
+        font-size: 25px;
+        cursor: pointer;
+        z-index: 1;
+        color: black;
+    }
+
+    .images {
+        width: 100%;
+    }
+
+    .images svg {
+        width: 34%;
+    }
+
+    .back-arrow {
+        position: relative;
+        top: 20px;
+        left: -20px;
+    }
+
+    .mobile-column {
+        margin-top: -600px !important;
+    }
 }

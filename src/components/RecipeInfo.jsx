@@ -1,4 +1,4 @@
-import { Row, Col, Container } from "react-bootstrap"
+import { Row, Col, Container, Image } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
@@ -10,6 +10,7 @@ import { FaClock } from "react-icons/fa6";
 import ListGroup from 'react-bootstrap/ListGroup';
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { clearInputValue } from "../service/redux/inputSearchSlice"
+import { setMenuStatus } from "../service/redux/isMenuOpenSlice"
 
 
 export const RecipeInfo = () => {
@@ -28,6 +29,7 @@ export const RecipeInfo = () => {
     const handleBackHome = () => {
         navigate('/')
         dispatch(clearInputValue())
+        dispatch(setMenuStatus())
     }
 
     
@@ -39,17 +41,14 @@ export const RecipeInfo = () => {
                 {recipeInfoStatus === 'succeeded' && 
                     <>
                     <Container fluid style={{backgroundColor: 'F5F5F5', height: '100vh'}}>
-
-                    
                         <Col>
-                            <h1 className="text-center mt-4 text-success display-5">{recipeInfoValue[0].title}</h1>
-                            
+                            <h1 className="text-center mt-5 text-success display-5">{recipeInfoValue[0].title}</h1>
                         </Col>
                         
                         <Row>
-                            <Col className="text-center mt-2" >
-                                <RiArrowGoBackLine style={{fontSize: '1.5em', cursor: 'pointer', marginRight: '95%', marginBottom: '1em'}} onClick={handleBackHome}/>
-                                <img src={recipeInfoValue[0].image} style={{width: '800px', height:'500px', backgroundSize: 'cover', borderRadius: '10px'}}/>
+                            <Col className="0" >
+                                <RiArrowGoBackLine style={{fontSize: '1.5em', cursor: 'pointer', marginRight: '90%', marginBottom: '1em'}} onClick={handleBackHome}/>
+                                <Image src={recipeInfoValue[0].image} fluid roundedCircle className='justify-self-center'/>
                             </Col>
                             <Row className="text-center mt-3" >
                                 <p className={`${styles['text']}`}><FaClock /> Ready in: {recipeInfoValue[0].readyInMinutes} minutes</p>
