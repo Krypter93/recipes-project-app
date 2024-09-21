@@ -37,13 +37,13 @@ export const QueriedRecipe = () => {
                 </Row>}
 
                 <Row>
-                    <RiArrowGoBackLine style={{fontSize: '1.5em', cursor: 'pointer', marginRight: '85%', marginBottom: '1em'}} onClick={handleBackHome}/>
+                    <RiArrowGoBackLine className={styles['back-arrow2']} onClick={handleBackHome}/>
                 </Row>
                 
 
                 {/* Card */}
                 {Array.isArray(query) && query.length > 0 ? (
-                    <Row className="mt-2 justify-content-center p-5"> 
+                    <Row className="mt-2 justify-content-center p-2"> 
                         {query.map((elem) => (
                     <Col xs={12} md={3} className='mt-3' key={elem.id}>
                         <Card className={styles['cards']}>

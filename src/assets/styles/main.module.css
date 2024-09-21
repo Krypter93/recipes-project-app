@@ -21,6 +21,15 @@ h1 {
     margin-bottom: 1em;
 }
 
+.back-arrow2 {
+    position: relative;
+    left: -25em;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-right: 85%;
+    margin-bottom: 1em;
+}
+
 
 .cards:hover {
     width: 17rem;
@@ -89,6 +98,15 @@ h1 {
     .back-arrow {
     position: relative;
     left: -0.3em;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-right: 85%;
+    margin-bottom: 1em;
+}
+
+.back-arrow2 {
+    position: relative;
+    left: -6em;
     font-size: 1.5em;
     cursor: pointer;
     margin-right: 85%;
