@@ -36,6 +36,11 @@ export const QueriedRecipe = () => {
                     </Col>
                 </Row>}
 
+                <Row>
+                    <RiArrowGoBackLine style={{fontSize: '1.5em', cursor: 'pointer', marginRight: '85%', marginBottom: '1em'}} onClick={handleBackHome}/>
+                </Row>
+                
+
                 {/* Card */}
                 {Array.isArray(query) && query.length > 0 ? (
                     <Row className="mt-2 justify-content-center p-5"> 
@@ -56,7 +61,7 @@ export const QueriedRecipe = () => {
                     </Col>
                 )} 
                 
-                <RiArrowGoBackLine className={styles['back-arrow']} style={{fontSize: '1.5em', cursor: 'pointer', marginLeft: '95%', marginBottom: '1em'}} onClick={handleBackHome}/>
+                
         </>
     )
 }

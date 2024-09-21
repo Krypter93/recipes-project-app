@@ -44,11 +44,11 @@ export const RecipeInfo = () => {
                         <Col>
                             <h1 className="text-center mt-5 text-success display-5">{recipeInfoValue[0].title}</h1>
                         </Col>
-                        
+
                         <Row>
-                            <Col className="0" >
-                                <RiArrowGoBackLine style={{fontSize: '1.5em', cursor: 'pointer', marginRight: '90%', marginBottom: '1em'}} onClick={handleBackHome}/>
-                                <Image src={recipeInfoValue[0].image} fluid roundedCircle className='justify-self-center'/>
+                            <Col className="text-center" >
+                                <RiArrowGoBackLine className={styles['back-arrow']} onClick={handleBackHome}/>
+                                <Image src={recipeInfoValue[0].image} fluid roundedCircle/>
                             </Col>
                             <Row className="text-center mt-3" >
                                 <p className={`${styles['text']}`}><FaClock /> Ready in: {recipeInfoValue[0].readyInMinutes} minutes</p>
