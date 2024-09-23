@@ -18,6 +18,7 @@ export const RecipeInfo = () => {
     const dispatch = useDispatch()
     const recipeInfoStatus = useSelector(state => state.recipeInfo.status)
     const recipeInfoValue = useSelector(state => state.recipeInfo.value)
+    const mobileMenuStatus = useSelector(state => state.isMenuOpen.value)
     const navigate = useNavigate()
     const { recipeId } = useParams()
     
@@ -27,9 +28,11 @@ export const RecipeInfo = () => {
     }, [recipeId, dispatch])
 
     const handleBackHome = () => {
+        if (mobileMenuStatus) {
+            dispatch(setMenuStatus())
+        } 
         navigate('/')
         dispatch(clearInputValue())
-        dispatch(setMenuStatus())
     }
 
     
