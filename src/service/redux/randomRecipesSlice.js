@@ -8,6 +8,7 @@ export const fetchRandomRecipes = createAsyncThunk(
             const response = await fetch(`${API.URL}/random?apiKey=${API.KEY}&number=8`)
             if(!response.ok) throw new Error('Something went wrong!')
             const data = await response.json()
+        
             return data.recipes
         } catch (error) {
             console.log('Error: ', error);
@@ -15,21 +16,18 @@ export const fetchRandomRecipes = createAsyncThunk(
     }
 )
 
+const storeStorage =  localStorage.getItem('random')
+
 const initialState = {
     status: 'idle',
-    random: [],
+    random: storeStorage ? JSON.parse(storeStorage) : [],
     error: null
 }
 
 const randomRecipesSlice = createSlice({
     name: 'randomRecipes',
     initialState,
-    reducers: {
-        clearRandomRecipes: (state) => {
-            state.status = 'idle'
-            state.random = []
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchRandomRecipes.pending, (state) => {
@@ -37,7 +35,8 @@ const randomRecipesSlice = createSlice({
             })
             .addCase(fetchRandomRecipes.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.random = action.payload
+                localStorage.setItem('random',JSON.stringify(action.payload))
+                state.random = action.payload       
             })
             .addCase(fetchRandomRecipes.rejected, (state, action) => {
                 state.status = 'failed'
@@ -47,5 +46,4 @@ const randomRecipesSlice = createSlice({
     }
 })
 
-export const { clearRandomRecipes } = randomRecipesSlice.actions
 export default randomRecipesSlice.reducer

@@ -16,9 +16,10 @@ export const QueriedRecipe = () => {
     const dispatch = useDispatch()
 
     const handleBackHome = () => {
+        dispatch(setMenuStatus())
         navigate('/')
         dispatch(clearInputValue())
-        dispatch(setMenuStatus())
+        
     }
 
     const handleClickRecipe = (recipeId) => {

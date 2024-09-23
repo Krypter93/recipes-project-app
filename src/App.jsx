@@ -6,7 +6,6 @@ import styles from './assets/styles/main.module.css'
 import { useSelector, useDispatch } from "react-redux"
 import {fetchRandomRecipes} from './service/redux/randomRecipesSlice'
 import { useEffect, useRef } from 'react';
-import { clearRandomRecipes } from "./service/redux/randomRecipesSlice"
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { setMenuStatus } from "./service/redux/isMenuOpenSlice"
@@ -18,16 +17,14 @@ function App() {
   const dispatch = useDispatch()
   const columnRef = useRef(null)
   const ref2 = useRef(null)
-  let initialLoad = false
+  const storageData = JSON.parse(localStorage.getItem('random'))
+  console.log(storageData);
 
-  useEffect(() => {
-    if(!initialLoad) {
-      initialLoad = true
-      dispatch(fetchRandomRecipes())
-    }
-    
-    return () => dispatch(clearRandomRecipes())
-}, [])
+useEffect(() => {
+  if(!storageData) {
+    dispatch(fetchRandomRecipes())
+  }
+}, [dispatch, storageData])
 
 const toggleMobileMenu = () => {
   dispatch(setMenuStatus())
@@ -54,15 +51,25 @@ const toggleMobileMenu = () => {
           </Col>
 
           {/* Main Content */}
-          {state === 'loading' && 
-          <Col className="d-flex justify-content-center align-items-center">
-            <Loading />
-          </Col>}  
-          
-          {state === 'succeeded' && 
-          <Col ref={ref2} className={styles['mobile-column']}>
-            <RandomRecipes recipes={data} />
-          </Col> }
+          {!storageData ? (
+            <>
+              {state === 'loading' && (
+                <Col className="d-flex justify-content-center align-items-center">
+                  <Loading />
+                </Col>
+              )}
+
+              {state === 'succeeded' && (
+                <Col ref={ref2} className={styles['mobile-column']}>
+                  <RandomRecipes recipes={data} />
+                </Col>
+              )}
+            </>
+          ) : (
+            <Col ref={ref2} className={styles['mobile-column']}>
+              <RandomRecipes recipes={storageData} />
+            </Col>
+          )}
         </Row>
         </Container> 
     </>

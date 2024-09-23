@@ -4,7 +4,7 @@ import { setInputValue } from "../service/redux/inputSearchSlice"
 import { fetchRecipe } from "../service/redux/recipeSeekerSlice"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { clearRandomRecipes } from "../service/redux/randomRecipesSlice"
+
 import styles from '../assets/styles/main.module.css'
 
 export const SearchRecipes = () => {
@@ -27,7 +27,6 @@ export const SearchRecipes = () => {
         }, 1000)
         
         return () => {
-            dispatch(clearRandomRecipes())
             clearTimeout(delay)
         }
     }, [inputState, dispatch, navigate])
