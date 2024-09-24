@@ -41,7 +41,7 @@ const toggleMobileMenu = () => {
 
   return (
     <>
-      <Container fluid style={{backgroundColor: 'F5F5F5', height: '100vh'}}>
+      <Container fluid style={{backgroundColor: 'F5F5F5'}}>
         <Col className={styles['mobile-menu']}>
           {mobileMenu ? <IoClose onClick={toggleMobileMenu} /> : <IoMenu title="Menu" onClick={toggleMobileMenu}/>}
         </Col>

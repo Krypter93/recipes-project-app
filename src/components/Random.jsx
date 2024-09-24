@@ -16,11 +16,10 @@ export const RandomRecipes = ({recipes}) => {
     return (
         <>
             {recipes && 
-            <Row>
                 <Col>
-                    <h1 className="text-center mt-3 text-success display-5">Popular Recipes</h1>
+                    <h1 className="text-center  text-success display-5">Popular Recipes</h1>
                 </Col>
-            </Row> 
+            
             }
             
 
