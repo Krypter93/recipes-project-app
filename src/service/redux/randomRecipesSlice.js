@@ -20,7 +20,7 @@ const storeStorage =  localStorage.getItem('random')
 
 const initialState = {
     status: 'idle',
-    random: storeStorage ? JSON.parse(storeStorage) : [],
+    random: storeStorage !== null ? JSON.parse(storeStorage) : [],
     error: null
 }
 

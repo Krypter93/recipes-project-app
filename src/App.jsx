@@ -9,6 +9,7 @@ import { useEffect, useRef } from 'react';
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { setMenuStatus } from "./service/redux/isMenuOpenSlice"
+import { Error } from "./components/Error"
 
 function App() {
   const state = useSelector(state => state.randomRecipes.status)
@@ -62,6 +63,12 @@ const toggleMobileMenu = () => {
               {state === 'succeeded' && (
                 <Col ref={ref2} className={styles['mobile-column']}>
                   <RandomRecipes recipes={data} />
+                </Col>
+              )}
+
+              {state === 'rejected' && (
+                <Col ref={ref2} className={styles['mobile-column']}>
+                  <Error />
                 </Col>
               )}
             </>
