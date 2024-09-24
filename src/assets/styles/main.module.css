@@ -58,6 +58,7 @@ h1 {
 }
 
 
+
 @media (min-width: 768px) {
     .mobile-menu {
         display: none;
@@ -93,7 +94,8 @@ h1 {
 
 
     .mobile-column {
-        margin-top: -800px !important;
+        position: relative;
+        margin-top: -650px !important;
     }
 
     .back-arrow {
