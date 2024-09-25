@@ -19,7 +19,6 @@ function App() {
   const columnRef = useRef(null)
   const ref2 = useRef(null)
   const storageData = JSON.parse(localStorage.getItem('random'))
-  console.log(storageData);
 
 useEffect(() => {
   if(!storageData) {
